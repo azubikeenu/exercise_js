@@ -1,16 +1,8 @@
 document.getElementById('user_id').addEventListener('blur', validateUserId);
-document
-  .getElementById('first_name')
-  .addEventListener('blur', validateRequired);
-
+document.getElementById('first_name').addEventListener('blur', validateRequired);
 document.getElementById('last_name').addEventListener('blur', validateRequired);
-
 document.getElementById('birth_date').addEventListener('blur', validateDate);
-
-document
-  .getElementById('user_form')
-  .addEventListener('submit', handleFormSubmit);
-
+document.getElementById('user_form').addEventListener('submit', handleFormSubmit);
 
 // HashMap is use to persist the state of errors
 const errors = new Map();
@@ -22,26 +14,18 @@ function validateUserId(e) {
   let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,12}$/;
   const errorMessage = `${fieldName} must contain an uppercase, a lowercase, a number, and be 8 to 12 chars long`;
   const errorDiv = e.target.nextElementSibling;
-  if (!regex.test(userId)) {
-    errorDiv.innerHTML = errorMessage;
-    errors.set(fieldName, errorMessage);
-    errorDiv.classList.add('show');
-  } else {
-    errorDiv.classList.remove('show');
-    errors.delete(fieldName);
-  }
+  !regex.test(userId)
+    ? displayErrorNotification(errorDiv, fieldName, errorMessage)
+    : removeErrorNofication(errorDiv, fieldName);
 }
 
 function validateRequired(e) {
   const value = e.target.value.trim();
   const fieldName = e.target.name;
   const errorDiv = e.target.nextElementSibling;
-  if (value === '') {
-    displayRequiredErrorNotifaction(errorDiv, fieldName);
-  } else {
-    errorDiv.classList.remove('show');
-    errors.delete(fieldName);
-  }
+  value === ''
+    ? displayErrorNotification(errorDiv, fieldName)
+    : removeErrorNofication(errorDiv, fieldName);
 }
 
 function validateDate(e) {
@@ -50,16 +34,20 @@ function validateDate(e) {
   const errorDiv = e.target.nextElementSibling;
   const numberOfDays = dateDiff(value);
   const isOfAge = numberOfDays > 365 * 18;
-  let errorMessage;
+
   if (!numberOfDays || numberOfDays <= 0) {
-    errorMessage = `Please provide a valid date`;
-    errorDiv.innerHTML = errorMessage;
-    errors.set(fieldName, errorMessage);
     errorDiv.classList.add('show');
+    displayErrorNotification(
+      errorDiv,
+      fieldName,
+      `Please provide a valid date`
+    );
   } else if (!isOfAge) {
-    errorMessage = `You are probably not old enough to take this class!`;
-    errorDiv.innerHTML = errorMessage;
-    errorDiv.classList.add('show');
+    displayErrorNotification(
+      errorDiv,
+      fieldName,
+      `You are probably not old enough to take this class!`
+    );
   } else {
     errorDiv.classList.remove('show');
     errors.delete(fieldName);
@@ -103,7 +91,7 @@ function checkNotEmpty() {
     if (e.value.trim() === '') {
       const errorDiv = e.nextElementSibling;
       const fieldName = e.name;
-      displayRequiredErrorNotifaction(errorDiv, fieldName);
+      displayErrorNotification(errorDiv, fieldName);
       isEmpty = true;
     }
   });
@@ -111,11 +99,15 @@ function checkNotEmpty() {
 }
 
 // display Required error notifications
-function displayRequiredErrorNotifaction(errorDiv, fieldName) {
-  const errorMessage = `Invalid! ${fieldName} cannot be empty`;
+function displayErrorNotification(errorDiv, fieldName, message) {
+  const errorMessage = message || `Invalid! ${fieldName} cannot be empty`;
   errorDiv.innerHTML = errorMessage;
   errors.set(fieldName, errorMessage);
   errorDiv.classList.add('show');
+}
+function removeErrorNofication(errorDiv, fieldName) {
+  errorDiv.classList.remove('show');
+  errors.delete(fieldName);
 }
 
 // Display pattern
