@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Form Validation</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h2>Days spent</h2>
+                <form id='user_form' name='user_form'>
+                    <div class="form-group">
+                        <label>User ID</label>
+                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="User ID">
+                        <div class="invalid small">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                            placeholder="First Name">
+                        <div class="invalid small">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name </label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                        <div class="invalid small">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Birth Date</label>
+                        <input type="date" class="form-control" id="birth_date" name="birth_date"
+                            placeholder="Date of Birth">
+                        <div class="invalid small">
+                        </div>
+                    </div>
+                    <input type="submit" value="ACCEPT" class="btn btn-primary btn-block">
+                </form>
+            </div>
+        </div>
+        <div class=" row showPattern">
+
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+    <script src="./validation.js"></script>
+</body>
+
+</html>
