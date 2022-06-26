@@ -1,8 +1,12 @@
 document.getElementById('user_id').addEventListener('blur', validateUserId);
-document.getElementById('first_name').addEventListener('blur', validateRequired);
+document
+  .getElementById('first_name')
+  .addEventListener('blur', validateRequired);
 document.getElementById('last_name').addEventListener('blur', validateRequired);
 document.getElementById('birth_date').addEventListener('blur', validateDate);
-document.getElementById('user_form').addEventListener('submit', handleFormSubmit);
+document
+  .getElementById('user_form')
+  .addEventListener('submit', handleFormSubmit);
 
 // HashMap is use to persist the state of errors
 const errors = new Map();
@@ -49,8 +53,7 @@ function validateDate(e) {
       `You are probably not old enough to take this class!`
     );
   } else {
-    errorDiv.classList.remove('show');
-    errors.delete(fieldName);
+    removeErrorNofication(errorDiv, fieldName);
   }
 }
 
